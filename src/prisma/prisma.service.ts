@@ -8,10 +8,19 @@ export class PrismaService
   extends PrismaClient
   implements OnModuleInit, OnModuleDestroy
 {
-  onModuleInit() {
-    throw new Error('Method not implemented.');
+  constructor() {
+    super({
+      datasources: {
+        db: {
+          url: 'postgresql://admin1:123@localhost:5432/ontari-db?schema=public',
+        },
+      },
+    });
   }
-  onModuleDestroy() {
-    throw new Error('Method not implemented.');
+  async onModuleInit() {
+    await this.$connect();
+  }
+  async onModuleDestroy() {
+    await this.$disconnect();
   }
 }
