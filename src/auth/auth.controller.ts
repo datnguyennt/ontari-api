@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthDTO } from './dto';
+import { TokenType, Tokens } from './types';
 @Controller('auth')
 export class AuthController {
   constructor(private authSevice: AuthService) {}
@@ -10,9 +11,9 @@ export class AuthController {
     this.authSevice.register(authDto);
   }
 
-  @Post('/sign-in')
-  signIn(@Body() authDto: AuthDTO) {
-    this.authSevice.signIn(authDto);
+  @Post('/login')
+  login(@Body() authDto: AuthDTO): Promise<Tokens> {
+    this.authSevice.login(authDto);
   }
 
   @Post('/refresh-token')
