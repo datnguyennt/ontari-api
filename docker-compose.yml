@@ -16,3 +16,11 @@ services:
       POSTGRES_USER: admin1
       POSTGRES_PASSWORD: 123
       POSTGRES_DB: ontari-db
+networks:
+  nestjs-network:
+
+#create container/ images from docker compose file
+#-d deamon/background mode
+#docker-compose up -d
+
+#remove 
